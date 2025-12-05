@@ -1,52 +1,57 @@
-/**
- * Board class represents the game board for Tic-Tac-Toe.
- * Handles board display, move validation, and win/draw detection.
- */
+// This class represents the game board
 public class Board {
+    // 2D array to store the board
     private char[][] grid;
+    // Size of the board (size x size)
     private int size;
+    // Empty space character
     private static final char EMPTY = ' ';
     
-    /**
-     * Constructor creates a new board with the specified size.
-     * @param size The size of the board (size x size)
-     */
+    // Constructor - creates a new board
     public Board(int size) {
+        // Save the size
         this.size = size;
+        // Create a 2D array for the board
         this.grid = new char[size][size];
+        // Fill it with empty spaces
         initializeBoard();
     }
     
-    /**
-     * Initializes the board with empty spaces.
-     */
+    // Fill the board with empty spaces
     private void initializeBoard() {
+        // Go through each row
         for (int i = 0; i < size; i++) {
+            // Go through each column
             for (int j = 0; j < size; j++) {
+                // Set this position to empty
                 grid[i][j] = EMPTY;
             }
         }
     }
     
-    /**
-     * Displays the current state of the board.
-     */
+    // Print the board to the screen
     public void display() {
+        // Print empty line first
         System.out.println();
+        // Go through each row
         for (int i = 0; i < size; i++) {
-            // Display row with values
+            // Go through each column in this row
             for (int j = 0; j < size; j++) {
+                // Print the value at this position
                 System.out.print(" " + grid[i][j] + " ");
+                // If not the last column, print a separator
                 if (j < size - 1) {
                     System.out.print("|");
                 }
             }
+            // Go to next line after each row
             System.out.println();
             
-            // Display separator line
+            // Print separator line between rows (but not after last row)
             if (i < size - 1) {
                 for (int j = 0; j < size; j++) {
                     System.out.print("---");
+                    // If not the last column, print a plus
                     if (j < size - 1) {
                         System.out.print("+");
                     }
@@ -54,144 +59,157 @@ public class Board {
                 System.out.println();
             }
         }
+        // Print empty line at the end
         System.out.println();
     }
     
-    /**
-     * Places a marker at the specified position.
-     * @param position The position (1-9 for 3x3, or calculated for larger boards)
-     * @param marker The marker to place (X or O)
-     * @return true if the move was successful, false otherwise
-     */
+    // Place X or O at a position
     public boolean makeMove(int position, char marker) {
+        // Calculate which row this position is in
         int row = (position - 1) / size;
+        // Calculate which column this position is in
         int col = (position - 1) % size;
         
-        if (isValidMove(position)) {
+        // Check if this is a valid move
+        if (isValidMove(position) == true) {
+            // Place the marker
             grid[row][col] = marker;
             return true;
         }
+        // Move was not valid
         return false;
     }
     
-    /**
-     * Checks if a move is valid (position is within bounds and cell is empty).
-     * @param position The position to check
-     * @return true if the move is valid, false otherwise
-     */
+    // Check if a position is valid (not taken and within bounds)
     public boolean isValidMove(int position) {
+        // Check if position is too small or too big
         if (position < 1 || position > size * size) {
             return false;
         }
         
+        // Calculate row and column
         int row = (position - 1) / size;
         int col = (position - 1) % size;
-        return grid[row][col] == EMPTY;
+        // Check if this spot is empty
+        if (grid[row][col] == EMPTY) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
-    /**
-     * Checks if there is a winner on the board.
-     * @return The winning marker (X or O), or EMPTY if no winner
-     */
+    // Check if someone has won
     public char checkWinner() {
-        // Check rows
+        // Check each row to see if all are the same
         for (int i = 0; i < size; i++) {
+            // Only check if first spot is not empty
             if (grid[i][0] != EMPTY) {
+                // Assume it's a win
                 boolean win = true;
+                // Check all other spots in this row
                 for (int j = 1; j < size; j++) {
+                    // If any spot is different, it's not a win
                     if (grid[i][j] != grid[i][0]) {
                         win = false;
                         break;
                     }
                 }
-                if (win) {
+                // If all spots were the same, we have a winner
+                if (win == true) {
                     return grid[i][0];
                 }
             }
         }
         
-        // Check columns
+        // Check each column to see if all are the same
         for (int j = 0; j < size; j++) {
+            // Only check if first spot is not empty
             if (grid[0][j] != EMPTY) {
+                // Assume it's a win
                 boolean win = true;
+                // Check all other spots in this column
                 for (int i = 1; i < size; i++) {
+                    // If any spot is different, it's not a win
                     if (grid[i][j] != grid[0][j]) {
                         win = false;
                         break;
                     }
                 }
-                if (win) {
+                // If all spots were the same, we have a winner
+                if (win == true) {
                     return grid[0][j];
                 }
             }
         }
         
-        // Check main diagonal
+        // Check diagonal from top-left to bottom-right
         if (grid[0][0] != EMPTY) {
+            // Assume it's a win
             boolean win = true;
+            // Check all spots on this diagonal
             for (int i = 1; i < size; i++) {
+                // If any spot is different, it's not a win
                 if (grid[i][i] != grid[0][0]) {
                     win = false;
                     break;
                 }
             }
-            if (win) {
+            // If all spots were the same, we have a winner
+            if (win == true) {
                 return grid[0][0];
             }
         }
         
-        // Check anti-diagonal
+        // Check diagonal from top-right to bottom-left
         if (grid[0][size - 1] != EMPTY) {
+            // Assume it's a win
             boolean win = true;
+            // Check all spots on this diagonal
             for (int i = 1; i < size; i++) {
+                // If any spot is different, it's not a win
                 if (grid[i][size - 1 - i] != grid[0][size - 1]) {
                     win = false;
                     break;
                 }
             }
-            if (win) {
+            // If all spots were the same, we have a winner
+            if (win == true) {
                 return grid[0][size - 1];
             }
         }
         
+        // No winner found
         return EMPTY;
     }
     
-    /**
-     * Checks if the board is full (draw condition).
-     * @return true if the board is full, false otherwise
-     */
+    // Check if board is completely full
     public boolean isFull() {
+        // Go through every position
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
+                // If we find an empty spot, board is not full
                 if (grid[i][j] == EMPTY) {
                     return false;
                 }
             }
         }
+        // All spots are filled
         return true;
     }
     
-    /**
-     * Gets the size of the board.
-     * @return The board size
-     */
+    // Get the size of the board
     public int getSize() {
         return size;
     }
     
-    /**
-     * Gets the total number of positions on the board.
-     * @return Total number of positions
-     */
+    // Get total number of positions on the board
     public int getTotalPositions() {
         return size * size;
     }
     
-    /**
-     * Resets the board to an empty state.
-     */
+    // Reset the board - clear everything
     public void reset() {
+        // Fill board with empty spaces again
         initializeBoard();
     }
 }

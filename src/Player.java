@@ -1,57 +1,43 @@
-/**
- * Player class represents a player in the Tic-Tac-Toe game.
- * Tracks player name, marker, and win statistics.
- */
+// This class represents a player
 public class Player {
+    // Player's name
     private String name;
+    // Player's marker (X or O)
     private char marker;
+    // How many times this player has won
     private int wins;
     
-    /**
-     * Constructor creates a new player.
-     * @param name The player's name
-     * @param marker The player's marker (X or O)
-     */
+    // Constructor - create a new player
     public Player(String name, char marker) {
+        // Save the name
         this.name = name;
+        // Save the marker
         this.marker = marker;
+        // Start with 0 wins
         this.wins = 0;
     }
     
-    /**
-     * Gets the player's name.
-     * @return The player's name
-     */
+    // Get the player's name
     public String getName() {
         return name;
     }
     
-    /**
-     * Gets the player's marker.
-     * @return The player's marker (X or O)
-     */
+    // Get the player's marker (X or O)
     public char getMarker() {
         return marker;
     }
     
-    /**
-     * Increments the player's win count.
-     */
+    // Add one win to this player
     public void addWin() {
-        wins++;
+        wins = wins + 1;
     }
     
-    /**
-     * Gets the player's win count.
-     * @return The number of wins
-     */
+    // Get how many wins this player has
     public int getWins() {
         return wins;
     }
     
-    /**
-     * Resets the player's win count.
-     */
+    // Reset wins back to 0
     public void resetWins() {
         wins = 0;
     }

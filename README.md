@@ -62,24 +62,24 @@ java -cp src Main
 ## Kravuppfyllelse
 
 ### Grundkrav (Godkänt)
-- ✅ Spelbart mellan två människor
-- ✅ Kontrollerar och meddelar vinnare/oavgjort
-- ✅ Validerar att indata är en tom ruta
-- ✅ Startar om efter vinst
-- ✅ Kod på engelska
-- ✅ Objektorienterad design
-- ✅ Strukturerad kod med variabler, strängar, tal, villkorssatser, loopar och funktioner
-- ✅ Undviker kodupprepning
+- Spelbart mellan två människor
+- Kontrollerar och meddelar vinnare/oavgjort
+- Validerar att indata är en tom ruta
+- Startar om efter vinst
+- Kod på engelska
+- Objektorienterad design
+- Strukturerad kod med variabler, strängar, tal, villkorssatser, loopar och funktioner
+- Undviker kodupprepning
 
 ### Extra krav (Väl godkänt)
-- ✅ Spelarnamn och visar vems tur det är
-- ✅ Räknar vinster per spelare
-- ✅ Korrekt felhantering
-- ✅ Flexibel spelplan (variabel storlek)
+- Spelarnamn och visar vems tur det är
+- Räknar vinster per spelare
+- Korrekt felhantering
+- Flexibel spelplan (variabel storlek)
 
 ## Teknisk information
 
-- **Språk**: Java
-- **Design**: Objektorienterad med separata klasser för Board, Player, Game och Main
-- **Felhantering**: Try-catch för NumberFormatException och validering av indata
-- **Kodstil**: Följer Java-konventioner med engelska namn och kommentarer
+- # Språk: Java
+- # Design: Objektorienterad med separata klasser för Board, Player, Game och Main
+- # Felhantering: Try-catch för NumberFormatException och validering av indata
+- # Kodstil: Följer Java-konventioner med engelska namn och kommentarer
